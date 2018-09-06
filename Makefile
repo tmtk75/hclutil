@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := help
 
 NAME := hclutil
+CMD_DIR := .
 
 VERSION := $(shell git describe --tags --abbrev=0)
 VERSION_LONG := $(shell git describe --tags)
@@ -15,12 +16,12 @@ SRCS := $(shell find . -type f -name '*.go')
 build: hclutil ## Build here
 
 hclutil: $(SRCS)
-	go build $(LDFLAGS) -o $(NAME) main.go
+	go build $(LDFLAGS) -o $(NAME) $(CMD_DIR)
 
 
 .PHONY: install
 install:  ## Install in GOPATH
-	go install $(LDFLAGS) main.go
+	go install $(LDFLAGS) $(CMD_DIR)
 
 .PHONY: clean
 clean:  ## Clean
@@ -47,7 +48,7 @@ archive: release-build
 .PHONY: release-build
 release-build:
 	for n in linux windows darwin; do \
-	  (GOARCH=amd64 GOOS=$${n} go build -o build/$(NAME)_$${n}_amd64 main.go) \
+	  (GOARCH=amd64 GOOS=$${n} go build -o build/$(NAME)_$${n}_amd64 $(CMD_DIR)) \
 	done
 
 .PHONY: help

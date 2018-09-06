@@ -16,6 +16,8 @@ import (
 var convCmd = &cobra.Command{
 	Use:   "conv",
 	Short: "Convert HCL in stdin to another format.",
+	Example: `  hclutil conv < foobar.tf
+  hclutil conv --format json < foobar.tf`,
 	Run: func(cmd *cobra.Command, args []string) {
 		convert()
 	},
