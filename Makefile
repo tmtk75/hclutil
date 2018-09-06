@@ -41,12 +41,13 @@ release: upload-archives
 
 .PHONY: upload-archives
 upload-archives: archive
-	ghr -u tmtk75 $(VERSION) ./build/*.zip
+	ghr -u tmtk75 $(VERSION) ./build/zip
 
 .PHONY: archive
 archive: release-build
+	mkdir -p build/zip
 	for n in linux windows darwin; do \
-	  (cd build; zip $(NAME)_$${n}_amd64.zip $(NAME)_$${n}_amd64) \
+	  (cd build; zip zip/$(NAME)_$${n}_amd64.zip $(NAME)_$${n}_amd64) \
 	done
 
 .PHONY: release-build
