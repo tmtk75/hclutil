@@ -5,7 +5,11 @@ CMD_DIR := .
 
 VERSION := $(shell git describe --tags --abbrev=0)
 VERSION_LONG := $(shell git describe --tags)
-VAR_VERSION := github.com/tmtk75/hclutil/cmd.Version
+COMMIT := $(shell git rev-parse --verify HEAD)
+BUILD_TIME := $(shell date '+%Y/%m/%d %H:%M:%S %Z')
+GO_VERSION := $(shell go version)
+
+VAR_VERSION := main.version
 
 LDFLAGS := -ldflags "-X $(VAR_VERSION)=$(VERSION) \
 	-X $(VAR_VERSION)Long=$(VERSION_LONG)"

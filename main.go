@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 func main() {
@@ -14,7 +15,29 @@ func main() {
 	}
 }
 
+var (
+	version     string
+	versionLong string
+)
+
+const (
+	KeyVersion = "version"
+)
+
 var RootCmd = &cobra.Command{
 	Use:   "hclutil",
 	Short: "A utilities for HCL.",
+	Run: func(c *cobra.Command, args []string) {
+		if viper.GetBool(KeyVersion) {
+			fmt.Println(version)
+			return
+		}
+		c.Help()
+	},
+}
+
+func init() {
+	pflags := RootCmd.PersistentFlags()
+	pflags.BoolP("version", "v", false, "Show version")
+	viper.BindPFlag(KeyVersion, pflags.Lookup("version"))
 }
