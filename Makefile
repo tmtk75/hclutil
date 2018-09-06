@@ -1,10 +1,10 @@
 .DEFAULT_GOAL := help
 
-NAME := hcl-util
+NAME := hclutil
 
 VERSION := $(shell git describe --tags --abbrev=0)
 VERSION_LONG := $(shell git describe --tags)
-VAR_VERSION := github.com/tmtk75/hcl-util/cmd.Version
+VAR_VERSION := github.com/tmtk75/hclutil/cmd.Version
 
 LDFLAGS := -ldflags "-X $(VAR_VERSION)=$(VERSION) \
 	-X $(VAR_VERSION)Long=$(VERSION_LONG)"
@@ -12,9 +12,9 @@ LDFLAGS := -ldflags "-X $(VAR_VERSION)=$(VERSION) \
 SRCS := $(shell find . -type f -name '*.go')
 
 .PHONY: build
-build: hcl-util ## Build here
+build: hclutil ## Build here
 
-hcl-util: $(SRCS)
+hclutil: $(SRCS)
 	go build $(LDFLAGS) -o $(NAME) main.go
 
 
