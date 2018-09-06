@@ -7,10 +7,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/ghodss/yaml"
 	"github.com/hashicorp/hcl"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"gopkg.in/yaml.v2"
 )
 
 var convCmd = &cobra.Command{
