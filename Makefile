@@ -41,7 +41,7 @@ release: upload-archives
 
 .PHONY: upload-archives
 upload-archives: archive
-	echo ghr -u tmtk75 $(VERSION) ./build/*.zip
+	ghr -u tmtk75 $(VERSION) ./build/*.zip
 
 .PHONY: archive
 archive: release-build
